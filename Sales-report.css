@@ -1,0 +1,199 @@
+/* Root styles (optional) */
+:root {
+    --main-bg: #f0f8f8;
+    --card-bg: #ffffff;
+    --teal: #006666;
+    --dark-teal: #004d4d;
+    --light-gray: #f1f1f1;
+    --text-dark: #2c3e50;
+    --text-light: #999;
+    --accent-green: #2ecc71;
+    --accent-red: #e74c3c;
+    --accent-orange: #f39c12;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--main-bg);
+  }
+  
+  /* Navbar (reuse your existing style) */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--teal);
+    color: #fff;
+    padding: 1rem 2rem;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .nav-items {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .nav-items a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .product-link i{
+    margin-right: 3px;
+  }
+
+  .badge {
+    background: red;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 50%;
+    position: relative;
+    top: -8px;
+    right: 6px;
+  }
+  
+  /* Page Header */
+  .page-header {
+    padding: 1rem 2rem;
+    background: #e8f5f5;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .page-header h1 {
+    margin: 0;
+    color: var(--teal);
+  }
+  
+  /* Dashboard Container */
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    padding: 1rem 2rem;
+  }
+  
+  /* Dash Card */
+  .dash-card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-header h2 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin: 0;
+  }
+  
+  .time-range {
+    font-size: 0.85rem;
+    color: var(--text-light);
+  }
+  
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .card-metric {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-dark);
+  }
+  
+  .big-number {
+    font-size: 1.5rem;
+    color: var(--teal);
+  }
+  
+  .trend-text {
+    font-size: 0.9rem;
+  }
+  
+  .trend-up {
+    color: var(--accent-green);
+  }
+  .trend-down {
+    color: var(--accent-red);
+  }
+  
+  /* Chart Placeholder */
+  .chart-placeholder {
+    background: var(--light-gray);
+    border-radius: 8px;
+    padding: auto;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .chart-icon {
+    font-size: 30px;
+    color: var(--text-light);
+  }
+  
+  /* List Items in Cards */
+  .list-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+  }
+  
+  .list-items li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+  }
+  
+  /* Low stock highlight */
+  .low-stock {
+    color: var(--accent-red);
+    font-weight: bold;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .dashboard-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  .dash-card .card-content ul.list-items {
+    color: red; /* Change to any color you prefer */
+}
+
+  
+
+  
+.card {
+  width: 350px; /* Adjust as needed */
+  height: 230px; /* Adjust as needed */
+  overflow: hidden; /* Prevents overflow issues */
+}
+
+canvas {
+  max-width: 100%;
+  max-height: 100%;
+}

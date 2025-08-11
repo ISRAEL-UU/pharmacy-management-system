@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Management Notifications</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Styling for notification icons */
+        .notification-icon {
+            font-size: 24px; /* Larger size */
+            color: #007bff; /* Customize the color */
+            margin-right: 10px; /* Add spacing */
+            cursor: pointer;
+        }
+        .notification-superscript {
+            position: absolute;
+            font-size: 12px; /* Adjust size as needed */
+            color: #fff; /* Color of the text */
+            background-color: #ff0000; /* Background color for emphasis */
+            border-radius: 50%; /* Make it a circle */
+            padding: 2px 5px; /* Space inside the circle */
+            top: -8px; /* Position above the icon */
+            right: -8px; /* Position to the right of the icon */
+        }
+        .notification-icon {
+            position: relative; /* Necessary for absolute positioning of the superscript */
+        }
+        
+        .notification-icon:hover {
+            color: #0056b3; /* Darker shade on hover */
+        }        
+
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            z-index: 1000;
+        }
+        
+
+        .modal-content { width: 100%; /* Ensure the modal content takes up full width */
+            max-width: 600px; /* Optional: Define a max width for the modal */
+            margin: 0 auto; /* Center the modal */
+            overflow-x: auto; 
+        }
+
+        .close-button {
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+            
+        }
+
+        table th, table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification Icons -->
+    <div>
+        <i id="expiryNotifBell" class="fas fa-bell notification-icon">
+            <sup id="expiryCount" class="notification-superscript">2</sup>
+        </i>
+        <i id="outOfStockNotifCart" class="fas fa-cart-shopping notification-icon">
+            <sup id="outOfStockCount" class="notification-superscript">3</sup>
+        </i>
+    </div>
+    
+    
+
+    <!-- Near Expiry Modal -->
+    <div id="expiryModal" class="modal">
+        <div class="modal-content">
+            <span id="closeExpiry" class="close-button">&times;</span>
+            <h2>Near Expiry Items</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Expiry Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows populated dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Out of Stock Modal -->
+    <div id="outOfStockModal" class="modal">
+        <div class="modal-content">
+            <span id="closeOutOfStock" class="close-button">&times;</span>
+            <h2>Out of Stock Items</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Stock Level</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows populated dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Select notification icons
+            const expiryNotifBell = document.getElementById("expiryNotifBell");
+            const outOfStockNotifCart = document.getElementById("outOfStockNotifCart");
+        
+            // Select modals
+            const expiryModal = document.getElementById("expiryModal");
+            const outOfStockModal = document.getElementById("outOfStockModal");
+        
+            // Select close buttons
+            const closeExpiry = document.getElementById("closeExpiry");
+            const closeOutOfStock = document.getElementById("closeOutOfStock");
+        
+            // Example data for notifications
+            const nearExpiryNotifications = [
+                { item: "Ibuprofen", expiryDate: "2025-04-15", details: "Batch #123, Storage A3" },
+                { item: "Aspirin", expiryDate: "2025-04-20", details: "Batch #456, Storage B1" },
+            ];
+            const outOfStockNotifications = [
+                { item: "Paracetamol", stockLevel: 0, details: "Reorder urgently. Supplier: MedCorp" },
+                { item: "Amoxicillin", stockLevel: 0, details: "Expected delivery: 5 days" },
+            ];
+        
+            // Show expiry modal and populate near-expiry data
+            expiryNotifBell?.addEventListener("click", () => {
+                expiryModal.style.display = "flex";
+        
+                const tableBody = expiryModal.querySelector("tbody");
+                tableBody.innerHTML = ""; // Clear previous rows
+                nearExpiryNotifications.forEach((notification, index) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${notification.item}</td>
+                        <td>${notification.expiryDate}</td>
+                        <td><button class="action-button" data-index="${index}" data-type="expiry">View Details</button></td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+        
+                // Add click event listeners to "View Details" buttons
+                expiryModal.querySelectorAll(".action-button").forEach(button => {
+                    button.addEventListener("click", (e) => {
+                        const index = e.target.getAttribute("data-index");
+                        const notification = nearExpiryNotifications[index];
+                        alert(`Item: ${notification.item}\nDetails: ${notification.details}`);
+                    });
+                });
+            });
+        
+            // Show out-of-stock modal and populate out-of-stock data
+            outOfStockNotifCart?.addEventListener("click", () => {
+                outOfStockModal.style.display = "flex";
+        
+                const tableBody = outOfStockModal.querySelector("tbody");
+                tableBody.innerHTML = ""; // Clear previous rows
+                outOfStockNotifications.forEach((notification, index) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${notification.item}</td>
+                        <td>${notification.stockLevel}</td>
+                        <td><button class="action-button" data-index="${index}" data-type="out-of-stock">View Details</button></td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+        
+                // Add click event listeners to "View Details" buttons
+                outOfStockModal.querySelectorAll(".action-button").forEach(button => {
+                    button.addEventListener("click", (e) => {
+                        const index = e.target.getAttribute("data-index");
+                        const notification = outOfStockNotifications[index];
+                        alert(`Item: ${notification.item}\nDetails: ${notification.details}`);
+                    });
+                });
+            });
+        
+            // Close modals when close buttons are clicked
+            closeExpiry?.addEventListener("click", () => {
+                expiryModal.style.display = "none";
+            });
+        
+            closeOutOfStock?.addEventListener("click", () => {
+                outOfStockModal.style.display = "none";
+            });
+        
+           // Close modals when clicking outside the modal content
+window.addEventListener("click", (event) => {
+    // Check if the click is outside the modal content
+    if (event.target === expiryModal && !expiryModal.querySelector('.modal-content').contains(event.target)) {
+        expiryModal.style.display = "none";
+    }
+    if (event.target === outOfStockModal && !outOfStockModal.querySelector('.modal-content').contains(event.target)) {
+        outOfStockModal.style.display = "none";
+    }
+});
+
+        });
+        document.addEventListener("DOMContentLoaded", () => {
+            // Example counts for notifications
+            const expiryCount = 2; // Replace with dynamic count
+            const outOfStockCount = 3; // Replace with dynamic count
+        
+            // Update the superscript numbers dynamically
+            document.getElementById("expiryCount").textContent = expiryCount;
+            document.getElementById("outOfStockCount").textContent = outOfStockCount;
+        });
+        
+    
+    </script>       
+</body>
+</html>

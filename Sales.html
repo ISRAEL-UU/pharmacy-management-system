@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>PharmEase - Sales Report</title>
+  <link rel="stylesheet" href="Sales-report.css">
+  <script src="https://kit.fontawesome.com/a163bc1809.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+  
+  <nav class="navbar">
+    <div class="logo">PharmEase</div>
+    <div class="nav-items">
+      <i class="fa-solid fa-bell"></i><span class="badge">3</span>
+      <i class="fa-solid fa-cart-shopping"></i><span class="badge">0</span>
+      <a href="home.html" class="home-logo">
+        <i class="fa-solid fa-house-chimney-window"></i>
+        Home</a>
+      <a href="product.html" class="product-link">
+      <i i class="fa-solid fa-bag-shopping"></i> 
+      Products</a>
+     <!-- <a href="#">Sales Report</a>-->
+      <a href="#" class="backup-link">
+        <i class="fa-solid fa-cloud"></i>
+        Backup</a>
+      <a href="#" class="logout" class="logout-link">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      Log out</a>
+    </div>
+  </nav>
+
+    <header class="page-header">
+    <h1>Sales & Analytics Dashboard</h1>
+  </header>
+
+  <!-- Main Dashboard Section -->
+  <section class="dashboard-container">
+    <!-- Card 1: Total Sales -->
+    <div class="dash-card">
+      <div class="card-header">
+        <h2>Total Sales</h2>
+        <span class="time-range">Last 30 Days</span>
+      </div>
+      <div class="card-content">
+        <div class="chart-placeholder">
+          <div>
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+        <p class="card-metric">GH₵ <span class="big-number">35,000</span></p>
+        <p class="trend-text"><span class="trend-up">+22%</span> vs previous 30 days</p>
+      </div>
+    </div>
+
+    <!-- Card 2: Transactions -->
+    <div class="dash-card">
+      <div class="card-header">
+        <h2>Transactions</h2>
+        <span class="time-range">Last 30 Days</span>
+      </div>
+      <div class="card-content">
+        <div class="chart-placeholder">
+          
+            <canvas id="lineChart"></canvas>
+          
+        </div>
+        <p class="card-metric">20,000</p>
+        <p class="trend-text"><span class="trend-up">+15%</span> vs previous 30 days</p>
+      </div>
+    </div>
+
+    <!-- Card 3: Best Seller (Pie/Donut Chart) -->
+    <div class="dash-card">
+      <div class="card-header">
+        <h2>Best Seller</h2>
+        <span class="time-range">Last 30 Days</span>
+      </div>
+      <div class="card-content">
+        <div class="chart-placeholder pie-chart">
+          <!-- Donut or Pie chart placeholder -->
+           <div>
+            <div></div>
+            <canvas id="pieChart"></canvas>
+           </div>
+          
+        </div>
+        <p class="card-metric">Paracetamol</p>
+        <p class="trend-text">10% of total sales</p>
+      </div>
+    </div>
+
+    <!-- Card 4: Low Stock Alerts -->
+    <div class="dash-card">
+      <div class="card-header">
+        <h2>Low Stock Alerts</h2>
+      </div>
+      <div class="card-content">
+        <div class="chart-placeholder bar-chart">
+          <div>
+            <canvas id="lowStockChart"></canvas>
+          </div>
+        </div>
+        <ul class="list-items">
+          <li>Paracetamol <span class="low-stock">15 left</span></li>
+          <li>Ibuprofen <span class="low-stock">10 left</span></li>
+          <li>Amoxicillin <span class="low-stock">3 left</span></li>
+          <li>Cough Syrup <span class="low-stock">2 left</span></li>
+          <li>Vitamin C<span class="low-stock">7 left</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Card 5: Best Selling -->
+    <div class="dash-card">
+      <div class="card-header">
+        <h2>Best Selling</h2>
+        <span class="time-range">Last 30 Days</span>
+      </div>
+      <div class="card-content">
+        <ol class="list-items">
+          <li>Paracetamol (150)</li>   
+          <li>Ibuprofen (120)</li>
+          <li>Vitamin C (100)</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Card 6: Expiring Soon -->
+    <div class="dash-card">
+      <div class="card-header">
+        <h2>Expiring Soon</h2>
+      </div>
+      <div class="card-content">
+        <ul class="list-items">
+          <li>Amoxicillin - 10/2024</li>
+          <li>Cough Syrup - 11/2024</li>
+          <li>Pain Relief Gel - 12/2024</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar', 
+        data: { 
+            labels: ['Jan', 'Feb', 'Mar'], 
+            datasets: [{ 
+                label: 'Sales', 
+                data: [10, 20, 30], 
+                backgroundColor: 'blue'
+            }] 
+        }, 
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+  
+
+    const ctxLine = document.getElementById('lineChart').getContext('2d');
+
+new Chart(ctxLine, {
+    type: 'line',
+    data: {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        datasets: [{
+            label: 'Sales Over Time',
+            data: [200, 400, 300, 500], 
+            borderColor: '#36A2EB',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            fill: true
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+const ctxPie = document.getElementById('pieChart').getContext('2d');
+new Chart(ctxPie, {
+    type: 'pie', 
+    data: {
+        labels: ['Ibuprofen', 'Paracetamol', 'Amoxicillin'],
+        datasets: [{
+            label: 'Sales Distribution',
+            data: [30, 50, 20], 
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+        }]
+    }
+});
+
+
+const ctxBar = document.getElementById('lowStockChart').getContext('2d');
+
+new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+        labels: ['Paracetamol', 'Ibuprofen', 'Amoxicillin', 'Cough Syrup', 'Vitamin C'],
+        datasets: [{
+            label: 'Stock Level',
+            data: [15, 10, 3, 2, 7], 
+            backgroundColor: ['#FF5733', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                suggestedMax: 10 // Adjust this to fit your data
+            }
+        }
+    }
+});
+
+
+
+    
+  </script>
+  
+
+</body>
+</html>

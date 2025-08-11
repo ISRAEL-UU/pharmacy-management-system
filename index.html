@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmEase.LogIn</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="https://kit.fontawesome.com/a163bc1809.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="script.js">
+
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h2>Login</h2>
+            <form id="loginForm" action="/logIn" method="POST">
+                <div class="input-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="User" placeholder="Username" required>
+                
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                <input type="password" name="password" placeholder="Password" required>
+                
+                </div>
+            
+                <div class="role-selector">
+                    <input type="radio" id="admin" name="role" value="admin" required>
+                    <label for="admin">Admin</label>
+
+                    <input type="radio" id="pharmacist" name="role" value="pharmacist" required>
+                    <label for="pharmacist">Pharmacist</label>
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+        
+            // Simulate authentication (replace with actual login logic)
+            setTimeout(() => {
+                window.location.href = "homepage.html"; // Redirect to homepage
+            }, 1000); // Simulate processing delay
+        });
+
+        // document.getElementById("loginBtnAdmin").addEventListener("click", function() {
+            document.querySelector("form").addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevents actual form submission for now
+                window.location.href = "home.html"; 
+            });
+        
+        
+
+        
+        </script>
+</body>
+
+</html>

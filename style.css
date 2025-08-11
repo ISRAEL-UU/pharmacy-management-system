@@ -1,0 +1,813 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: #e6f2f2;
+    padding-top: 60px;
+}
+/*login page*/
+.container{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 50, 0.8) , rgba(0, 0, 50, 0.8)), url('img/back2.jpg');
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.form-box{
+    width: 350px;
+    height: 450px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 50px 60px 70px;
+    text-align: center;
+   
+}
+.form-box h2{
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #3c00a0;
+    position: relative;
+}
+
+.form-box h2::after{
+    content: '';
+    width: 100px;
+    height: 2px;
+    border-radius: 3px;
+    background: #3c00a0;
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.input-group{
+    background: #eaeaea;
+    margin: 12px 0;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    max-height: 65px;
+    transition: max-height .5s;
+    overflow: hidden;
+}
+.input-group input{
+    
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding:18px 15px;
+
+}
+
+.input-group i{
+    margin-left: 15px;
+    
+}
+
+
+button{
+    margin-top: 20px;
+    width: 40%;
+    height: 40px;
+    border: 0;
+    outline: 0;
+    background: #3c00a0;
+    color: #fff;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.input-group{
+ 
+   height: 50px;
+}
+/*
+.btn-field button.disable{
+    background: #eaeaea;
+    color: #555;
+}*/
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #008080;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.nav-items {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-items a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.logout {
+    color: #ff6f61;
+}
+
+.icons {
+    position: relative;
+    right: 25px;
+}
+
+.icons i {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.icons i:hover {
+    color: #0074cc;
+}
+
+.badge {
+    background: #ff6f61;
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: 10px;
+    position: relative;
+    top: -8px;
+    right: 13px;
+}
+
+/* Form Styles */
+.container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-box {
+    background: #ffffff;
+    padding: 30px 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h2 {
+    font-size: 26px;
+    color: #008080;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #0074cc;
+    margin: 8px auto 0;
+}
+
+.role-selector {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.role-selector input[type="radio"] {
+    display: none;
+}
+
+.role-selector label {
+    flex: 1;
+    text-align: center;
+    padding: 5px;
+    margin: 0 5px;
+    border: 2px solid #0074cc;
+    border-radius: 4px;
+    color: #0074cc;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.role-selector input[type="radio"]:checked + label,
+.role-selector label:hover {
+    background: #0074cc;
+    color: #fff;
+}
+
+button,
+input[type="submit"],
+button[type="submit"] {
+    padding: 12px;
+    background: #008080;
+    color: #fff;
+    width: 300px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover,
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+    background: #e45a50;
+}
+
+/*home style*/
+.manage-sales {
+    background: #f9f9f9;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+
+.manage-sales h2::after {
+    display: none;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    background: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.input-group i {
+    color: #6c757d;
+    margin-right: 10px;
+}
+
+.input-group input {
+    border: none;
+    outline: none;
+    background: transparent;
+    flex: 1;
+    font-size: 15px;
+    color: #2c3e50;
+}
+
+/* Page Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.page-header .datetime p,
+.page-header .sales-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+
+
+/* Manage Sales */
+.manage-sales {
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Controls */
+.top-controls {
+    display: flex;
+    max-width: 300px;
+    width: auto;
+    white-space: nowrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 8px;
+
+}
+
+.top-controls input,
+.top-controls button {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.top-controls button {
+    background: #009688;
+    color: #fff;
+    border: none;
+}
+
+.top-controls button:hover {
+    background: #00796B;
+}
+
+ .top-controls .options {
+    width: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+
+
+/* Table */
+.sales-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.sales-table th,
+.sales-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.sales-table th {
+    background: #1A2E35;
+    color: #fff;
+}
+
+.sales-table td {
+    background: #ffffff;
+}
+.status-available{
+    background: #28a745;
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 5px;
+    width: 150px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* Remove Button */
+.remove-btn {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    max-width: 100px;
+    width: auto;
+    white-space: nowrap;
+    padding: 3px 8px;
+    cursor: pointer;
+    border-radius: 7px;
+}
+
+.remove-btn:hover {
+    background: #bd2130;
+}
+
+/* Total & Status */
+.total {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #1A2E35;
+    
+}
+
+.status-bar {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Misc */
+.money::before {
+    content: "₵";
+    margin-left: auto;
+}
+
+/* Fix odd spacing in some areas */
+.actions::before,
+.actions::after {
+    content: none;
+}
+
+.actions {
+    border-bottom: none !important;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+       /* flex-direction: column;*/
+        align-items: flex-start;
+    }
+
+    .nav-items {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .top-controls input {
+        flex: 100%;
+    }
+
+    .top-controls {
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sales-table th, .sales-table td {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+}
+
+.total-count {
+    color: green;
+    font-weight: bold;
+}
+
+
+.action-edit {
+    color: blue;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.action-delete {
+    color: red;
+    cursor: pointer; 
+}
+
+
+.filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 17px;
+}
+
+.filter-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex: 1 ; /* allows responsiveness */
+    min-width: 150px;
+}
+
+
+/* product style */
+.options button {
+    min-width: 150px;
+    max-width: 250px;
+    width: auto;
+    padding: 8px 15px;
+    display: block;
+    gap: 7px;
+    align-items: center;
+}
+
+.options {
+    display: flex;         
+    gap: 10px;             
+    align-items: center;   
+  }
+  .file-upload-container{
+    margin-left: auto;
+  }
+  
+  .custom-file-upload {
+    display: inline-block;
+    width: auto;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+
+    
+  }
+  
+
+.custom-file-upload {
+    display: flex;
+    padding: 8px 12px;
+    cursor: pointer;
+
+    color: #fff;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.custom-file-upload input {
+    display: flex; /* hides default input */
+}
+.TotalMedicine{
+    display: flex;
+    width: 300px;
+    margin: 0 auto;
+}
+
+/* sales style */
+/* Root styles  */
+:root {
+    --main-bg: #f0f8f8;
+    --card-bg: #ffffff;
+    --teal: #006666;
+    --dark-teal: #004d4d;
+    --light-gray: #f1f1f1;
+    --text-dark: #2c3e50;
+    --text-light: #999;
+    --accent-green: #2ecc71;
+    --accent-red: #e74c3c;
+    --accent-orange: #f39c12;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--main-bg);
+  }
+  
+  /* Navbar (reuse your existing style) */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--teal);
+    color: #fff;
+    padding: 1rem 2rem;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .nav-items {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .nav-items a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .product-link i{
+    margin-right: 3px;
+  }
+
+  .badge {
+    background: red;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 50%;
+    position: relative;
+    top: -8px;
+    right: 6px;
+  }
+  
+  /* Page Header */
+  .page-header {
+    padding: 1rem 2rem;
+    background: #e8f5f5;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .page-header h1 {
+    margin: 0;
+    color: var(--teal);
+  }
+  
+  /* Dashboard Container */
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    padding: 1rem 2rem;
+  }
+  
+  /* Dash Card */
+  .dash-card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-header h2 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin: 0;
+  }
+  
+  .time-range {
+    font-size: 0.85rem;
+    color: var(--text-light);
+  }
+  
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .card-metric {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-dark);
+  }
+  
+  .big-number {
+    font-size: 1.5rem;
+    color: var(--teal);
+  }
+  
+  .trend-text {
+    font-size: 0.9rem;
+  }
+  
+  .trend-up {
+    color: var(--accent-green);
+  }
+  .trend-down {
+    color: var(--accent-red);
+  }
+  
+  /* Chart Placeholder */
+  .chart-placeholder {
+    background: var(--light-gray);
+    border-radius: 8px;
+    padding: auto;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .chart-icon {
+    font-size: 30px;
+    color: var(--text-light);
+  }
+  
+  /* List Items in Cards */
+  .list-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+  }
+  
+  .list-items li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+  }
+  
+  /* Low stock highlight */
+  .low-stock {
+    color: var(--accent-red);
+    font-weight: bold;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .dashboard-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  .dash-card .card-content ul.list-items {
+    color: red; 
+}
+
+  
+
+  
+.card {
+  width: 350px;
+  height: 230px; 
+  overflow: hidden; 
+}
+
+canvas {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+/* Styling for notification icons */
+.notification-icon {
+    font-size: 24px; /* Larger size */
+    color: #007bff; /* Customize the color */
+    margin-right: 10px; /* Add spacing */
+    cursor: pointer;
+}
+.notification-superscript {
+    position: absolute;
+    font-size: 12px; /* Adjust size as needed */
+    color: #fff; /* Color of the text */
+    background-color: #ff0000; /* Background color for emphasis */
+    border-radius: 50%; /* Make it a circle */
+    padding: 2px 5px; /* Space inside the circle */
+    top: -8px; /* Position above the icon */
+    right: -8px; /* Position to the right of the icon */
+}
+.notification-icon {
+    position: relative; /* Necessary for absolute positioning of the superscript */
+}
+
+.notification-icon:hover {
+    color: #0056b3; /* Darker shade on hover */
+}        
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000;
+}
+
+
+.modal-content { width: 100%; /* Ensure the modal content takes up full width */
+    max-width: 600px; /* Optional: Define a max width for the modal */
+    margin: 0 auto; /* Center the modal */
+    overflow-x: auto; 
+}
+
+.close-button {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+table th {
+    background-color: #f2f2f2;
+}

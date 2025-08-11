@@ -1,0 +1,269 @@
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Notification Icons */
+.notification {
+    position: relative;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.badge {
+    background: red;
+    color: white;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+
+/*
+    // Example price list for demo
+    const priceList = {
+        'Paracetamol': 5,
+        'Ibuprofen': 8,
+        'Amoxicillin': 12,
+        'Vitamin C': 3
+    };
+
+    function calculateTotal() {
+        let total = 0;
+        document.querySelectorAll('.sales-table tbody tr').forEach(row => {
+            const amount = parseFloat(row.querySelector('.amount').textContent.replace('₵', ''));
+            total += amount;
+        });
+        totalDisplay.textContent = `₵${total.toFixed(2)}`;
+        statusBar.textContent = total > 0 ? 'Sales recorded' : 'No sales available';
+    }
+
+    addToCartBtn.addEventListener('click', () => {
+        const medicineInput = document.querySelector('input[placeholder="Search Medicine"]');
+        const categoryInput = document.querySelector('input[placeholder="Search Category"]');
+        const qtyInput = document.querySelector('input[placeholder="Available Qty"]');
+
+        const medicine = medicineInput.value.trim();
+        const category = categoryInput.value.trim();
+        const qty = parseInt(qtyInput.value);
+
+        // Basic validations
+        if (!medicine || !category || isNaN(qty) || qty <= 0) {
+            alert('Please fill in all fields with valid values!');
+            return;
+        }
+
+        // Dynamic price
+        const price = priceList[medicine] || 5; // Default price ₵5 if not found
+        const amount = price * qty;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${medicine}</td>
+            <td>${category}</td>
+            <td>12/2025</td>
+            <td class="money">₵${price.toFixed(2)}</td>
+            <td>${qty}</td>
+            <td class="money amount">₵${amount.toFixed(2)}</td>
+            <td><button class="remove-btn">Remove</button></td>
+        `;
+        salesTable.appendChild(row);
+
+        // Reset input fields after adding
+        medicineInput.value = '';
+        categoryInput.value = '';
+        qtyInput.value = '';
+
+        calculateTotal();
+    });
+
+    salesTable.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-btn')) {
+            e.target.closest('tr').remove();
+            calculateTotal();
+        }
+    });
+
+   /* calculateTotal();*/
+    /*const addToCartBtn = document.querySelector('button');
+    const salesTable = document.querySelector('.sales-table tbody');
+    const totalDisplay = document.querySelector('.total .money');
+    const statusBar = document.querySelector('.status-bar');*/
+    /*document.addEventListener("DOMContentLoaded", function () {
+    const medicineInput = document.querySelector('input[placeholder="Search Medicine"]');
+    const categoryInput = document.querySelector('input[placeholder="Search Category"]');
+    const qtyInput = document.querySelectorAll('input[placeholder="Available Qty"]')[1]; // User-entered quantity
+    const availableQtyDisplay = document.querySelectorAll('input[placeholder="Available Qty"]')[0]; // Display available qty
+    const addToCartBtn = document.querySelector('button');
+    const salesTable = document.querySelector('.sales-table tbody');
+    const totalDisplay = document.querySelector('.total .money');
+    const statusBar = document.querySelector('.status-bar');
+    const proceedBtn = document.getElementById("process-btn");
+
+    // Initialize medicine stock if not already in LocalStorage
+    medicineInput.addEventListener("input", function () {
+        const medicine = medicineInput.value.trim();
+        console.log("User searched for:", medicine);
+        console.log("Stock data available:", stockData);
+    
+        if (stockData[medicine]) {
+            availableQtyDisplay.value = stockData[medicine].qty;
+            console.log("Available stock:", stockData[medicine].qty);
+        } else {
+            availableQtyDisplay.value = "";
+            console.log("Medicine not found in stock!");
+        }
+    });
+    
+
+    // Get stock data from LocalStorage
+    let stockData = JSON.parse(localStorage.getItem("stockData"));
+
+    // Show available quantity when user enters medicine name
+    medicineInput.addEventListener("input", function () {
+        const medicine = medicineInput.value.trim();
+        if (stockData[medicine]) {
+            availableQtyDisplay.value = stockData[medicine].qty;
+        } else {
+            availableQtyDisplay.value = "";
+        }
+    });
+    
+    // Function to calculate total price
+    function calculateTotal() {
+        let total = 0;
+        document.querySelectorAll('.sales-table tbody tr').forEach(row => {
+            const amount = parseFloat(row.querySelector('.amount').textContent.replace('₵', ''));
+            total += amount;
+        });
+        totalDisplay.textContent = `₵${total.toFixed(2)}`;
+        statusBar.textContent = total > 0 ? 'Sales recorded' : 'No sales available';
+
+        // Show "Proceed" button if cart is not empty
+        proceedBtn.style.display = total > 0 ? "block" : "none";
+
+        // Save cart data to LocalStorage
+        saveCart();
+    }
+
+    // Load cart from LocalStorage
+    function loadCart() {
+        const cartData = JSON.parse(localStorage.getItem("cart")) || [];
+        cartData.forEach(item => {
+            addRowToTable(item.medicine, item.category, item.price, item.qty);
+        });
+        calculateTotal();
+    }
+
+    // Save cart to LocalStorage
+    function saveCart() {
+        const cartData = [];
+        document.querySelectorAll('.sales-table tbody tr').forEach(row => {
+            const medicine = row.cells[0].textContent;
+            const category = row.cells[1].textContent;
+            const price = parseFloat(row.cells[3].textContent.replace('₵', ''));
+            const qty = parseInt(row.cells[4].textContent);
+            cartData.push({ medicine, category, price, qty });
+        });
+        localStorage.setItem("cart", JSON.stringify(cartData));
+    }
+
+    // Function to add row to the sales table
+    function addRowToTable(medicine, category, price, qty) {
+        const amount = price * qty;
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${medicine}</td>
+            <td>${category}</td>
+            <td>12/2025</td>
+            <td class="money">₵${price.toFixed(2)}</td>
+            <td>${qty}</td>
+            <td class="money amount">₵${amount.toFixed(2)}</td>
+            <td><button class="remove-btn">Remove</button></td>
+        `;
+        salesTable.appendChild(row);
+    }
+
+    // Add to cart function
+    addToCartBtn.addEventListener('click', () => {
+        console.log("Add to Cart clicked");
+    
+        // Validations
+        if (!medicine || !category || isNaN(qty) || qty <= 0) {
+            alert('Please enter valid medicine, category, and quantity!');
+            return;
+        }
+        if (!stockData[medicine]) {
+            alert("This medicine is not in stock!");
+            return;
+        }
+        if (qty > stockData[medicine].qty) {
+            alert("Not enough stock available!");
+            return;
+        }
+
+        // Get price and calculate amount
+        const price = stockData[medicine].price;
+
+        // Add row to table
+        addRowToTable(medicine, category, price, qty);
+
+        // Reduce stock quantity
+        stockData[medicine].qty -= qty;
+        localStorage.setItem("stockData", JSON.stringify(stockData));
+
+        // Reset input fields
+        medicineInput.value = "";
+        categoryInput.value = "";
+        qtyInput.value = "";
+
+        calculateTotal();
+    });
+
+    // Remove from cart function
+    salesTable.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-btn')) {
+            const row = e.target.closest('tr');
+            const medicine = row.cells[0].textContent;
+            const qty = parseInt(row.cells[4].textContent);
+
+            // Restore stock quantity
+            stockData[medicine].qty += qty;
+            localStorage.setItem("stockData", JSON.stringify(stockData));
+
+            // Remove row
+            row.remove();
+            calculateTotal();
+        }
+    });
+
+    // Load cart on page refresh
+    loadCart();
+});*/
